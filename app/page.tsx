@@ -9,10 +9,7 @@ export default function Home() {
   const [joke, setJoke] = useState(null)
 
   useEffect(()=>{
-    getJoke()
-  },[])
-
-  async function getJoke(){
+    async function getJoke(){
       try{
         const response=await axios.get("https://official-joke-api.appspot.com/random_joke")
         setJoke(response.data)
@@ -21,6 +18,10 @@ export default function Home() {
         console.log(error)
       }
     }
+    getJoke()
+  },[])
+
+  
 
   return (
     <div className={`flex flex-col justify-center items-center h-screen gap-2 ${theme ===false? "bg-white":"bg-gray-900"}` }>
@@ -42,8 +43,8 @@ export default function Home() {
       }
       </div>
       
-      <div>
-        <button className="bg-amber-500 rounded-full p-2" > Next Joke</button>
+      <div className="flex gap-2">
+        <button className="bg-amber-500 rounded-full p-2"  > Next Joke</button>
         <button className="bg-amber-500 rounded-full p-2" 
       onClick={()=>{
         setTheme(prev=>!prev)
